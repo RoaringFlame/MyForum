@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>注册页面</title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div th:include="header::head"></div>
+<div id="main">
+
+    <!-- Thread Start -->
+    <div class="t" style="margin-bottom:0px; border-bottom:0">
+        <table cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+                <th class="h">
+                    <strong class="fl w">用户注册</strong> &nbsp;
+                    <span style="color: red; font-weight: bold; "><div th:text="${messages}"></div></span>
+                </th>
+            </tr>
+        </table>
+    </div>
+
+    <form th:action="@{/person/addPerson}" th:object="${personVO}" method="post">
+        <div class="t t2">
+            <table cellspacing="0" cellpadding="0" width="100%"
+                   style="table-layout:fixed;border-top:0">
+
+                <tr class="tr3">
+                    <td style="width: 120px; ">
+                        帐号:
+                    </td>
+                    <td>
+                        <input type="text" th:field="*{account}"/>
+                    </td>
+                </tr>
+                <tr class="tr3">
+                    <td>
+                        密码:
+                    </td>
+                    <td>
+                        <input type="password" th:field="*{password}"/>
+                    </td>
+                </tr>
+                <tr class="tr3">
+                    <td>
+                        确认密码:
+                    </td>
+                    <td>
+                        <input type="password" th:field="*{RePassword}"/>
+                    </td>
+                </tr>
+                <tr class="tr3">
+                    <td>
+                        姓名:
+                    </td>
+                    <td>
+                        <input type="text" th:field="*{name}"/>
+                    </td>
+                </tr>
+                <tr class="tr3">
+                    <td>
+                        性别:
+                    </td>
+                    <td>
+                        <select th:field="*{sex}">
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="tr3">
+                    <td>
+                        电子邮件:
+                    </td>
+                    <td>
+                        <input type="text" th:field="*{email}"/>
+                    </td>
+                </tr>
+                <tr class="tr3">
+                    <td>
+                        生日:
+                    </td>
+                    <td>
+                        <input type="text" th:field="*{birthday}"/>
+                    </td>
+                </tr>
+                <tr class="tr3">
+                    <td colspan="2">
+                        <button type="submit" class="btn">注册</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+<div th:include="footer::foot"></div>
+</body>
+</html>

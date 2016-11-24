@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" th:fragment="head">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="../static/css/header.css" th:href="@{/css/header.css}"/>
+</head>
+<body>
+<div id="wrapA">
+    <div id="header">
+        <div class="toptool tar">
+					<span><a href="/">Home首页</a> | <a
+                            href="/">论坛首页</a> </span>
+        </div>
+        <table cellspacing="0" cellpadding="0" align="center" width="100%">
+            <tr>
+                <td class="banner">
+                    <a href="./"><img src="../static/img/yellow/logo.png" th:src="@{/img/yellow/logo.png}"/> </a>
+                </td>
+                <td class="banner" id="banner" align="right">
+                    <img src="../static/img/yellow/banner.gif" th:src="@{/img/yellow/banner.gif}"/>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" height="1" colspan="2"></td>
+            </tr>
+        </table>
+        <!--<div id="h_guide" class="guide" colspan="2">-->
+            <!--<span class="s3">&raquo;</span>-->
+
+            <!--<th:choose>-->
+            <!--<c:when test="${ personInfo == null }">-->
+            <!--您尚未&nbsp;-->
+            <!--<a href="<html:rewrite action="/person?action=initLogin" />">登录</a> |-->
+            <!--<a href="<html:rewrite action="/person?action=initAdd" />">注册</a>-->
+            <!--</c:when>-->
+            <!--<c:otherwise>-->
+            <!--欢迎您, <a-->
+            <!--href="<html:rewrite action="/person?action=view" />&person.id=${ personInfo.id }">${-->
+            <!--personInfo.account }</a> | <a-->
+            <!--href="<html:rewrite action="/person?action=logout" />">注销</a>-->
+            <!--</c:otherwise>-->
+            <!--</th:choose>-->
+        <!--</div>-->
+    </div>
+</div>
+</body>
+</html>
