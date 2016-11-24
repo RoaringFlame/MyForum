@@ -2,6 +2,7 @@ package com.myforum.controller.vo;
 
 import com.myforum.dao.domain.Person;
 import com.myforum.util.VoUtil;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -18,9 +19,11 @@ public class PersonVO {
     private String email;
     private String birthday;
 
-    public static Person generateBy(PersonVO personVO,HttpServletRequest request){
-        Person person = VoUtil.copyBasic(Person.class,personVO);
+    public static Person generateBy(PersonVO personVO, HttpServletRequest request) {
+        Person person = VoUtil.copyBasic(Person.class, personVO);
         assert person != null;
+        Md5PasswordEncoder md5 = new Md5PasswordEncoder();
+        person.setPassword(md5.encodePassword(personVO.getPassword(), ""));
         Date date = new Date();
         person.setDateCreated(date);
         person.setDateLastActived(date);
@@ -97,17 +100,17 @@ public class PersonVO {
         return password.equals(RePassword);
     }
 
-    public static String getRemoteHost(HttpServletRequest request){
+    public static String getRemoteHost(HttpServletRequest request) {
         String ip = request.getHeader("x-forwarded-for");
-        if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)){
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("Proxy-Client-IP");
         }
-        if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)){
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getHeader("WL-Proxy-Client-IP");
         }
-        if(ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)){
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
             ip = request.getRemoteAddr();
         }
-        return ip.equals("0:0:0:0:0:0:0:1")?"127.0.0.1":ip;
+        return ip.equals("0:0:0:0:0:0:0:1") ? "127.0.0.1" : ip;
     }
 }

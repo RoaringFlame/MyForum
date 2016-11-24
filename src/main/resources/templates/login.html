@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>登录页面</title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div th:include="header::head"></div>
+<div id="main">
+
+    <!-- Thread Start -->
+    <div class="t" style="margin-bottom:0px; border-bottom:0">
+        <table cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+                <th class="h">
+                    <strong class="fl w">需要登录</strong> &nbsp;
+					<span style="color: red; font-weight: bold; ">
+                        <div th:if="${param.error}">
+                            账号或密码错误！
+                        </div>
+                        <div th:if="${param.logout}">
+                            登录超时或已退出！
+                        </div>
+                    </span>
+
+                </th>
+            </tr>
+        </table>
+    </div>
+
+    <form action="login" th:action="@{/login}" method="POST">
+        <div class="t t2">
+            <table cellspacing="0" cellpadding="0" width="100%"
+                   style="table-layout:fixed;border-top:0">
+                <tr class="tr3">
+                    <td style="width: 120px; ">
+                        帐号:
+                    </td>
+                    <td>
+                        <input type="text" name="username"/>
+                    </td>
+                </tr>
+
+                <tr class="tr3">
+                    <td style="width: 120px; ">
+                        密码:
+                    </td>
+                    <td>
+                        <input type="password" name="password"/>
+                    </td>
+                </tr>
+
+                <tr class="tr3">
+                    <td colspan="2">
+                        <button class="submit" type="submit">登陆</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+<div th:include="footer::foot"></div>
+</body>
+</html>
