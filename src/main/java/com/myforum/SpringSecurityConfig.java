@@ -29,8 +29,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.addFilterBefore(new MyCharacterEncodingFilter(), ChannelProcessingFilter.class);
         http.csrf().disable();
-        http.formLogin().loginPage("/login").defaultSuccessUrl("/");
-        http.logout().logoutSuccessUrl("/");
+        http.formLogin().loginPage("/login").defaultSuccessUrl("/person/registerPage");
+        http.logout().logoutSuccessUrl("/login");
         http.authorizeRequests().antMatchers("/person/*").permitAll();
 //        http
 //                .authorizeRequests()
