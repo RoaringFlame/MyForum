@@ -4,6 +4,8 @@ import com.myforum.dao.domain.Person;
 import com.myforum.dao.repositories.PersonRepository;
 import com.myforum.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 /**
@@ -25,5 +27,17 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public boolean isRegisterSuccess(Person person) {
         return personRepository.saveAndFlush(person) != null;
+    }
+
+    @Override
+    public Person getNowPerson() {
+        try {
+            UserDetails userDetails = (UserDetails)
+                    SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            Person person = personRepository.findByAccount(userDetails.getUsername());
+            return person;
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

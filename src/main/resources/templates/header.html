@@ -34,21 +34,23 @@
                 <a href="/registerPage" th:href="@{/person/registerPage}">注册</a>
             </div>
             <div sec:authorize="isAuthenticated()">
-                <div>欢迎您 <div th:text="${#authentication.name}"></div></div>
+                <div>欢迎您 <a href="/person/viewInfo" th:href="@{/person/viewInfo}">
+                    <div th:text="${#authentication.name}"></div>
+                </a></div>
                 <a href="/logout" th:href="@{/logout}">注销</a>
             </div>
             <!--<c:choose>-->
-                <!--<c:when test="${ personInfo == null }">-->
-                    <!--您尚未&nbsp;-->
-                    <!--<a href="<html:rewrite action="/person?action=initLogin" />">登录</a> |-->
-                    <!--<a href="<html:rewrite action="/person?action=initAdd" />">注册</a>-->
-                <!--</c:when>-->
-                <!--<c:otherwise>-->
-                    <!--欢迎您, <a-->
-                        <!--href="<html:rewrite action="/person?action=view" />&person.id=${ personInfo.id }">${-->
-                    <!--personInfo.account }</a> | <a-->
-                        <!--href="<html:rewrite action="/person?action=logout" />">注销</a>-->
-                <!--</c:otherwise>-->
+            <!--<c:when test="${ personInfo == null }">-->
+            <!--您尚未&nbsp;-->
+            <!--<a href="<html:rewrite action="/person?action=initLogin" />">登录</a> |-->
+            <!--<a href="<html:rewrite action="/person?action=initAdd" />">注册</a>-->
+            <!--</c:when>-->
+            <!--<c:otherwise>-->
+            <!--欢迎您, <a-->
+            <!--href="<html:rewrite action="/person?action=view" />&person.id=${ personInfo.id }">${-->
+            <!--personInfo.account }</a> | <a-->
+            <!--href="<html:rewrite action="/person?action=logout" />">注销</a>-->
+            <!--</c:otherwise>-->
             <!--</c:choose>-->
         </div>
     </div>

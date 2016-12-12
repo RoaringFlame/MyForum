@@ -6,4 +6,6 @@ public interface PersonService {
     boolean isAccountHasRegistered(String account,String email);
 
     boolean isRegisterSuccess(Person person);
+
+    Person getNowPerson();
 }

@@ -1,6 +1,8 @@
 package com.myforum.controller;
 
+import com.myforum.controller.vo.PersonInfoVO;
 import com.myforum.controller.vo.PersonVO;
+import com.myforum.dao.domain.Person;
 import com.myforum.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,34 +26,45 @@ public class PersonController {
     private PersonService personService;
 
     @RequestMapping(value = "/registerPage", method = GET)
-    public String registerPage(Model model){
+    public String registerPage(Model model) {
         PersonVO personVO = new PersonVO();
-        model.addAttribute("personVO",personVO);
-        model.addAttribute("messages","你好！");
+        model.addAttribute("personVO", personVO);
+        model.addAttribute("messages", "你好！");
         return "register";
     }
 
     @RequestMapping(value = "/addPerson", method = POST)
-    public String register(PersonVO personVO, HttpServletRequest request, Model model){
-        if(personVO.haveEmptyElement()){
-            model.addAttribute("personVO",personVO);
-            model.addAttribute("messages","请完善所有信息!");
+    public String register(PersonVO personVO, HttpServletRequest request, Model model) {
+        if (personVO.haveEmptyElement()) {
+            model.addAttribute("personVO", personVO);
+            model.addAttribute("messages", "请完善所有信息!");
             return "register";
         }
-        if(personService.isAccountHasRegistered(personVO.getAccount(),personVO.getEmail())){
-            model.addAttribute("personVO",personVO);
-            model.addAttribute("messages","账户名或邮箱已被注册!");
+        if (personService.isAccountHasRegistered(personVO.getAccount(), personVO.getEmail())) {
+            model.addAttribute("personVO", personVO);
+            model.addAttribute("messages", "账户名或邮箱已被注册!");
             return "register";
         }
-        if(!personVO.isPasswordEqualed()){
-            model.addAttribute("personVO",personVO);
-            model.addAttribute("messages","密码输入不一致!");
+        if (!personVO.isPasswordEqualed()) {
+            model.addAttribute("personVO", personVO);
+            model.addAttribute("messages", "密码输入不一致!");
             return "register";
         }
-        if(!personService.isRegisterSuccess(personVO.generateBy(personVO,request))){
-            model.addAttribute("personVO",personVO);
-            model.addAttribute("messages","服务器异常，请稍候再试!");
+        if (!personService.isRegisterSuccess(PersonVO.generateBy(personVO, request))) {
+            model.addAttribute("personVO", personVO);
+            model.addAttribute("messages", "服务器异常，请稍候再试!");
             return "register";
-        }else return "/";
+        } else return "/";
+    }
+
+    @RequestMapping(value = "/viewInfo", method = GET)
+    public String getInfo(Model model) {
+        Person person = personService.getNowPerson();
+        if (person != null) {
+            PersonInfoVO personInfoVO = PersonInfoVO.generateBy(person);
+            model.addAttribute("person", personInfoVO);
+            return "viewPerson";
+        }
+        return "login";
     }
 }

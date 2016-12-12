@@ -19,7 +19,7 @@ public class Board extends BaseBean {
     @Column(name = "thread_count")
 	private int threadCount;
 
-    @Column(name = "replay_count")
+    @Column(name = "reply_count")
 	private int replyCount;
 
 	@ManyToOne

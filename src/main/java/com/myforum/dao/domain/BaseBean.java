@@ -7,7 +7,7 @@ import java.util.Date;
 public class BaseBean {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Version
