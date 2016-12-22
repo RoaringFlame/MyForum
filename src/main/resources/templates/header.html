@@ -16,10 +16,10 @@
         <table cellspacing="0" cellpadding="0" align="center" width="100%">
             <tr>
                 <td class="banner">
-                    <a href="./"><img src="../static/img/yellow/logo.png" th:src="@{/img/yellow/logo.png}"/> </a>
+                    <a href="./"><img src="../static/images/logo.png" th:src="@{/images/logo.png}"/> </a>
                 </td>
                 <td class="banner" id="banner" align="right">
-                    <img src="../static/img/yellow/banner.gif" th:src="@{/img/yellow/banner.gif}"/>
+                    <img src="../static/images/banner.gif" th:src="@{/images/banner.gif}"/>
                 </td>
             </tr>
             <tr>
@@ -27,31 +27,22 @@
             </tr>
         </table>
         <div id="h_guide" class="guide" colspan="2">
-            <span class="s3">&raquo;</span>
 
             <div sec:authorize="!isAuthenticated()">
+                <span class="s3">&raquo;</span>
+                您尚未&nbsp;
                 <a href="/login" th:href="@{/login}">登录</a>
                 <a href="/registerPage" th:href="@{/person/registerPage}">注册</a>
             </div>
+
             <div sec:authorize="isAuthenticated()">
-                <div>欢迎您 <a href="/person/viewInfo" th:href="@{/person/viewInfo}">
-                    <div th:text="${#authentication.name}"></div>
-                </a></div>
-                <a href="/logout" th:href="@{/logout}">注销</a>
+                <span class="s3">&raquo;</span>
+                欢迎您 <a href="/person/viewInfo" th:href="@{/person/viewInfo}">
+                    <div style="display: inline-block" th:text="${#authentication.name}"></div>
+                </a>
+                <a href="/logout" th:href="@{/logout}" style="display: inline-block">注销</a>
             </div>
-            <!--<c:choose>-->
-            <!--<c:when test="${ personInfo == null }">-->
-            <!--您尚未&nbsp;-->
-            <!--<a href="<html:rewrite action="/person?action=initLogin" />">登录</a> |-->
-            <!--<a href="<html:rewrite action="/person?action=initAdd" />">注册</a>-->
-            <!--</c:when>-->
-            <!--<c:otherwise>-->
-            <!--欢迎您, <a-->
-            <!--href="<html:rewrite action="/person?action=view" />&person.id=${ personInfo.id }">${-->
-            <!--personInfo.account }</a> | <a-->
-            <!--href="<html:rewrite action="/person?action=logout" />">注销</a>-->
-            <!--</c:otherwise>-->
-            <!--</c:choose>-->
+
         </div>
     </div>
 </div>

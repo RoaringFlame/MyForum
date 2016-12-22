@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>设置版主</title>
+    <meta charset="utf-8"/>
+</head>
+<body>
+<div th:include="header::head"></div>
+
+<div id="main">
+    <!-- Thread Start -->
+    <div class="t" style="margin-bottom:0px; border-bottom:0">
+        <table cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+                <th class="h">
+                    <strong class="fl w">设置版主</strong> &nbsp;
+                </th>
+            </tr>
+        </table>
+    </div>
+
+
+    <form action="/board" th:action="@{/board/setAdmin}" th:object="${boardAdministratorVO}" method="post">
+        <div class="t t2">
+            <table cellspacing="0" cellpadding="0" width="100%"
+                   style="table-layout:fixed;border-top:0">
+                <tr class="tr3">
+                    <td style="width: 120px; ">
+                        版面名称:
+                    </td>
+                    <td>
+                        <select class="form-control" th:field="*{boardId}" id="board" onchange="showAdmin()">
+                            <option th:each="board:${boardList}" th:value="${board.id}" th:text="${board.name}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr class="tr3">
+                    <td style="width: 120px; ">
+                        版主列表:
+                    </td>
+                    <td>
+                        <div id="admins"></div>
+                    </td>
+                </tr>
+                <tr class="tr3">
+                    <td style="width: 120px; ">
+                        设置版主:
+                    </td>
+                    <td>
+                        <select class="form-control" th:field="*{personId}">
+                            <option th:each="person:${personList}" th:value="${person.id}"
+                                    th:text="${person.account}">
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr class="tr3">
+                    <td colspan="2">
+                        <button type="submit" class="btn">保存</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </form>
+
+</div>
+
+<div th:include="footer::foot"></div>
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    var boardList = [[${boardList}]];
+    var sltBoard = document.getElementById("board");
+    var tetAdmin = document.getElementById("admins");
+    showAdmin();
+
+    function showAdmin(){
+        var adminList = boardList[sltBoard.selectedIndex].administrators;
+        tetAdmin.innerHTML = adminList;
+    }
+    /*]]>*/
+</script>
+</body>
+</html>

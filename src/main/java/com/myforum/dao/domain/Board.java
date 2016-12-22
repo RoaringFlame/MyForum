@@ -31,7 +31,7 @@ public class Board extends BaseBean {
 	private Thread lastThread;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "board_administrator", joinColumns = { @JoinColumn(name = "board_id") }, inverseJoinColumns = { @JoinColumn(name = "person_id") })
+	@JoinTable(name = "t_board_administrator", joinColumns = { @JoinColumn(name = "board_id") }, inverseJoinColumns = { @JoinColumn(name = "person_id") })
 	private Set<Person> administrators = new HashSet<Person>();
 
 	public Category getCategory() {

@@ -1,7 +1,7 @@
 body {
     font-family: Tahoma;
     font-size: 12px;
-    background: #e1d5aa url(../../static/img/yellow/bg1.jpg) top center repeat-y;
+    background: #e1d5aa url(../images/bg1.jpg) top center repeat-y;
     margin: auto;
 }
 
@@ -171,7 +171,7 @@ select {
 }
 
 .btn {
-    background: #c7b985 url(../../static/img/yellow/bg.png) 0 -200px repeat-x;
+    background: #c7b985 url(../images/bg.png) 0 -200px repeat-x;
     color: #000000;
     border-width: 1px;
     padding-left: 15px;
@@ -198,12 +198,12 @@ textarea {
 #header {
     width: 940px;
     margin: auto;
-    background: url(../../static/img/yellow/headerbg.png) 0 0 repeat-x;
+    background: url(../images/headerbg.png) 0 0 repeat-x;
 }
 
 /*toolbar*/
 .toptool {
-    background: url(../../static/img/yellow/bg.png) 0 0 repeat-x;
+    background: url(../images/bg.png) 0 0 repeat-x;
     color: #ffffff;
     padding-top: 5px;
 }
@@ -221,7 +221,7 @@ textarea {
 #infobox {
     border: #c7b985 1px solid;
     margin-top: -.8em;
-    background: #c7b985 url(../../static/img/yellow/bg.png) 0 bottom repeat-x;
+    background: #c7b985 url(../images/bg.png) 0 bottom repeat-x;
 }
 
 #notice {
@@ -232,7 +232,7 @@ textarea {
 #notice a {
     color: #fff;
     padding-left: 1em;
-    background: url(../../static/img/yellow/dotB.png) no-repeat 0 .1em;
+    background: url(../images/dotB.png) no-repeat 0 .1em;
     margin-left: 1.5em
 }
 
@@ -243,7 +243,7 @@ textarea {
 
 /*guide*/
 .guide {
-    background: #F3F8EF url(../../static/img/yellow/bg.png) 0 -100px repeat-x;
+    background: #F3F8EF url(../images/bg.png) 0 -100px repeat-x;
     padding: .5em;
     color: #ccc
 }
@@ -280,7 +280,7 @@ textarea {
 /*table head*/
 .h {
     border-bottom: 1px solid #f9c100;
-    background: #E0F0F9 url(../../static/img/yellow/bg.png) 0 -200px repeat-x;
+    background: #E0F0F9 url(../images/bg.png) 0 -200px repeat-x;
     text-align: left;
     color: #000000;
     padding: .3em .4em
@@ -321,7 +321,7 @@ textarea {
 
 /*table tr2*/
 .tr2 {
-    background: #F3F8EF url(../../static/img/yellow/bg.png) 0 -300px repeat-x;
+    background: #F3F8EF url(../images/bg.png) 0 -300px repeat-x;
     color: #dc565e;
 }
 
@@ -348,7 +348,7 @@ textarea {
 }
 
 .tr4 {
-    background: #E0F0F9 url(../../static/img/yellow/bg.png) 0 -200px repeat-x;
+    background: #E0F0F9 url(../images/bg.png) 0 -200px repeat-x;
     color: #000000;
 }
 

@@ -6,16 +6,17 @@
 </head>
 <body>
 <div th:include="header::head"></div>
-<div class="contentwrap z">
+
+<div style="width:940px;margin: auto">
     <div th:each="category:${categoryList}">
         <div class="t">
-            <table cellspacing="0" cellpadding="0" width="100%">
+            <table cellspacing="0" cellpadding="0" width="inherit">
                 <tr>
                     <th class="h" colspan="6">
                         <a class="closeicon fr" style="cursor:pointer;"
                            onclick="return IndexDeploy('85',0)">
-                            <img id="img_85" src="../static/img/yellow/index/cate_fold.gif"
-                                 th:src="@{/img/yellow/index/cate_fold.gif}"/>
+                            <img id="img_85" src="../static/images/index/cate_fold.gif"
+                                 th:src="@{/images/index/cate_fold.gif}"/>
                         </a>
                         <h2>
                             &raquo;
@@ -37,7 +38,7 @@
                 <tr class="tr3 f_one" th:each="board:${category.boards}">
                     <td class="icon tac" width="45">
                         <a th:href="@{/board/list(id=${board.id})}">
-                            <img src="../static/img/yellow/new.gif" th:src="@{/img/yellow/new.gif}"/>
+                            <img src="../static/images/new.gif" th:src="@{/images/new.gif}"/>
                         </a>
                     </td>
                     <th>
@@ -99,6 +100,7 @@
                             <a th:href="@{/person/viewInfoById(id=${person.id})}">
                                 <div th:text="${person.account}"></div>
                             </a>
+                            &nbsp;
                         </div>
                         &nbsp;
                     </td>
