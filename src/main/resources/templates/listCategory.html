@@ -11,7 +11,7 @@
 <div style="width:940px;margin: auto">
     <div th:each="category:${categoryList}">
         <div class="t">
-            <table cellspacing="0" cellpadding="0" width="inherit">
+            <table cellspacing="0" cellpadding="0">
                 <tr>
                     <th class="h" colspan="6">
                         <a class="closeicon fr" style="cursor:pointer;"
@@ -22,7 +22,7 @@
                         <h2>
                             &raquo;
                             <a th:href="@{/category/list(id=${category.id})}" href="listCategory.html">
-                                <div th:text="${category.name}"></div>
+                                <div th:text="${category.name}" style="display: inline-block"></div>
                             </a>
                         </h2>
                     </th>
@@ -32,19 +32,19 @@
                     <td width="*" colspan="2" class="tac">论坛</td>
                     <td class="tal y-style e" style="width:5%">主题</td>
                     <td class="tal y-style e" style="width:5%">文章</td>
-                    <td class="tal y-style f" style="width:40%">最后发表</td>
+                    <td class="tal y-style f" style="width:40%">最后发表/最后回复</td>
                     <td class="y-style" style="width:10%">版主</td>
                 </tr>
                 <tbody id="cate_85" style="display:;">
                 <tr class="tr3 f_one" th:each="board:${category.boards}">
                     <td class="icon tac" width="45">
-                        <a th:href="@{/board/list(id=${board.id})}">
+                        <a th:href="@{/thread/page/list(boardId=${board.id})}">
                             <img src="../static/images/new.gif" th:src="@{/images/new.gif}"/>
                         </a>
                     </td>
                     <th>
                         <h3 class="b">
-                            <a th:href="@{/board/list(id=${board.id})}">
+                            <a th:href="@{/thread/page/list(boardId=${board.id})}">
 
                                 <div th:text="${board.name}"></div>
                             </a>
@@ -65,7 +65,7 @@
                     </td>
                     <th>
                         <div th:if="${board.lastThread!=null}">
-                            <a th:href="@{/thread/list(id=${board.lastThread.id})}" class="a2">
+                            <a th:href="@{/reply/page/list(threadId=${board.lastThread.id})}" class="a2">
                                 <div th:text="${board.lastThread.title}"></div>
                             </a>
                             <br/>
@@ -79,7 +79,7 @@
                             </span>
                         </div>
                         <div th:if="${board.lastReply!=null}">
-                            <a th:href="@{/thread/list(boardId=${board.lastReply.thread.id},replyId=${board.lastReply.id})}"
+                            <a th:href="@{/reply/page/list(threadId=${board.lastReply.thread.id},replyId=${board.lastReply.id})}"
                                class="a2">
                                 <div th:text="${board.lastReply.title}"></div>
                             </a>
