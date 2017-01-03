@@ -21,7 +21,7 @@
     </div>
 
 
-    <form action="/board" th:action="@{/board/setAdmin}" th:object="${boardAdministratorVO}" method="post">
+    <form action="/board" th:action="@{/board/setAdmin}" method="post">
         <div class="t t2">
             <table cellspacing="0" cellpadding="0" width="100%"
                    style="table-layout:fixed;border-top:0">
@@ -30,7 +30,7 @@
                         版面名称:
                     </td>
                     <td>
-                        <select class="form-control" th:field="*{boardId}" id="board" onchange="showAdmin()">
+                        <select class="form-control" id="board" onchange="showAdmin()" name="boardId">
                             <option th:each="board:${boardList}" th:value="${board.id}" th:text="${board.name}">
                             </option>
                         </select>
@@ -49,7 +49,7 @@
                         设置版主:
                     </td>
                     <td>
-                        <select class="form-control" th:field="*{personId}">
+                        <select class="form-control" name="personId">
                             <option th:each="person:${personList}" th:value="${person.id}"
                                     th:text="${person.account}">
                             </option>
