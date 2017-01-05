@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -61,6 +62,19 @@ public class PersonController {
     public String getInfo(Model model) {
         Person person = personService.getNowPerson();
         if (person != null) {
+            PersonInfoVO personInfoVO = PersonInfoVO.generateBy(person);
+            model.addAttribute("person", personInfoVO);
+            return "viewPerson";
+        }
+        return "login";
+    }
+
+    @RequestMapping(value = "/viewInfoById", method = GET)
+    public String getInfoById(@RequestParam()Long personId,
+                              Model model) {
+        Person nowPerson = personService.getNowPerson();
+        if (nowPerson != null) {
+            Person person = personService.getPersonById(personId);
             PersonInfoVO personInfoVO = PersonInfoVO.generateBy(person);
             model.addAttribute("person", personInfoVO);
             return "viewPerson";

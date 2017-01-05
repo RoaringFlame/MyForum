@@ -22,12 +22,12 @@ public class Board extends BaseBean {
     @Column(name = "reply_count")
 	private int replyCount;
 
-	@ManyToOne
-	@JoinColumn(name = "last_reply_id")
+	@OneToOne
+	@JoinColumn(name = "last_reply_id",unique = true)
 	private Reply lastReply;
 
-	@ManyToOne
-	@JoinColumn(name = "last_thread_id")
+	@OneToOne
+	@JoinColumn(name = "last_thread_id",unique = true)
 	private Thread lastThread;
 
 	@ManyToMany(cascade = CascadeType.ALL)

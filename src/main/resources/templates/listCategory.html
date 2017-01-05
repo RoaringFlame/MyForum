@@ -98,7 +98,7 @@
                     <td class="y-style"
                         style="word-break: keep-all;word-wrap:no-wrap">
                         <div th:each="person:${board.administrators}">
-                            <a th:href="@{/person/viewInfoById(id=${person.id})}">
+                            <a th:href="@{/person/viewInfoById(personId=${person.id})}">
                                 <div th:text="${person.account}"></div>
                             </a>
                             &nbsp;

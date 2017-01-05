@@ -12,4 +12,6 @@ public interface PersonService {
     Person getNowPerson();
 
     List<Person> allPerson();
+
+    Person getPersonById(Long personId);
 }

@@ -3,7 +3,7 @@
 <head>
     <title>添加类别</title>
     <meta charset="utf-8"/>
-    <link rel="icon" type="image/x-icon" href="../static/images/favicon.ico" th:href="@{/images/favicon.ico}" />
+    <link rel="icon" type="image/x-icon" href="../static/images/favicon.ico" th:href="@{/images/favicon.ico}"/>
 </head>
 <body>
 <div th:include="header::head"></div>
@@ -93,12 +93,11 @@
                     负责的版面:
                 </td>
                 <td>
-                    <!--<c:forEach items="${ person.boardsAdministrated }" var="board">-->
-                    <!--<a-->
-                    <!--href="<html:rewrite action="/board?action=list" />&board.id=${ board.id }">${-->
-                    <!--board.name }</a>-->
-                    <!--</c:forEach>-->
-                    <!--&nbsp;-->
+                    <div th:each="board:${person.boardsAdministrated}">
+                        <a href="listThread.html" th:href="@{/thread/page/list(boardId=${board.id})}">
+                            <div th:text="${board.name}"></div>
+                        </a>
+                    </div>
                 </td>
             </tr>
         </table>

@@ -23,6 +23,7 @@ public class PersonInfoVO {
     public static PersonInfoVO generateBy(Person person) {
         PersonInfoVO personInfoVO = VoUtil.copyBasic(PersonInfoVO.class, person);
         assert personInfoVO != null;
+        personInfoVO.setBoardsAdministrated(person.getBoardsAdministrated());
         return personInfoVO;
     }
 
