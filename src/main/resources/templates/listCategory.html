@@ -70,7 +70,7 @@
                             </a>
                             <br/>
                             <span class="f12">
-                                <a th:href="@{/person/viewInfoById(id=${board.lastThread.author.id})}">
+                                <a th:href="@{/person/viewInfoById(peersonId=${board.lastThread.author.id})}">
                                     <div th:text="${board.lastThread.author.account}"></div>
                                 </a>
                             </span>
@@ -78,6 +78,7 @@
                                 <div th:text="${board.lastThread.dateCreated}"></div>
                             </span>
                         </div>
+                        <div>----------------------------------------------------------</div>
                         <div th:if="${board.lastReply!=null}">
                             <a th:href="@{/reply/page/list(threadId=${board.lastReply.thread.id},replyId=${board.lastReply.id})}"
                                class="a2">
@@ -85,7 +86,7 @@
                             </a>
                             <br/>
                             <span class="f12">
-                                <a th:href="@{/person/viewInfoById(id=${board.lastReply.author.id})}">
+                                <a th:href="@{/person/viewInfoById(personId=${board.lastReply.author.id})}">
                                     <div th:text="${board.lastReply.author.account}"></div>
                                 </a>
                             </span>

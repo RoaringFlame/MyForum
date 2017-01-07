@@ -5,7 +5,6 @@ import com.myforum.dao.domain.Person;
 import com.myforum.util.VoUtil;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -13,17 +12,19 @@ import java.util.List;
  */
 public class BoardInfoVO {
     private Long id;
+    private Long categoryId;
+    private String categoryName;
     private String name;
     private String administrators;
 
     public static BoardInfoVO generateBy(Board board) {
         BoardInfoVO boardInfoVO = VoUtil.copyBasic(BoardInfoVO.class, board);
         assert boardInfoVO != null;
+        boardInfoVO.setCategoryId(board.getCategory().getId());
+        boardInfoVO.setCategoryName(board.getCategory().getName());
         String administrators = "";
-        Iterator i = board.getAdministrators().iterator();
-        while (i.hasNext()) {
-            Person person = (Person) i.next();
-            administrators = administrators + person.getAccount() + " ";
+        for (Person person : board.getAdministrators()) {
+            administrators = administrators + person.getAccount() + "、";
         }
         boardInfoVO.setAdministrators(administrators);
         return boardInfoVO;
@@ -43,6 +44,22 @@ public class BoardInfoVO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getName() {

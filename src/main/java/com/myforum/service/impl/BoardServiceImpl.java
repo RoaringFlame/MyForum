@@ -47,4 +47,9 @@ public class BoardServiceImpl implements BoardService {
         board.getAdministrators().add(person);
         return boardRepository.saveAndFlush(board) != null;
     }
+
+    @Override
+    public Board getBoardById(Long boardId) {
+        return boardRepository.findOne(boardId);
+    }
 }

@@ -14,4 +14,6 @@ public interface BoardService {
     List<Board> allBoard();
 
     boolean setAdmin(Long boardId,Long personId);
+
+    Board getBoardById(Long boardId);
 }

@@ -11,6 +11,7 @@ import java.util.Set;
  * Created by Administrator on 2016/12/7.
  */
 public class PersonInfoVO {
+    private String id;
     private String account;
     private String name;
     private String sex;
@@ -25,6 +26,14 @@ public class PersonInfoVO {
         assert personInfoVO != null;
         personInfoVO.setBoardsAdministrated(person.getBoardsAdministrated());
         return personInfoVO;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getAccount() {

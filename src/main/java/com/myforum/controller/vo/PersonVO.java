@@ -1,6 +1,7 @@
 package com.myforum.controller.vo;
 
 import com.myforum.dao.domain.Person;
+import com.myforum.util.IpUtil;
 import com.myforum.util.VoUtil;
 import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 
@@ -27,7 +28,7 @@ public class PersonVO {
         Date date = new Date();
         person.setDateCreated(date);
         person.setDateLastActived(date);
-        String ip = getRemoteHost(request);
+        String ip = IpUtil.getRemoteHost(request);
         person.setIpCreated(ip);
         person.setIpLastActived(ip);
         return person;
@@ -98,19 +99,5 @@ public class PersonVO {
 
     public boolean isPasswordEqualed() {
         return password.equals(RePassword);
-    }
-
-    public static String getRemoteHost(HttpServletRequest request) {
-        String ip = request.getHeader("x-forwarded-for");
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("Proxy-Client-IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getHeader("WL-Proxy-Client-IP");
-        }
-        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getRemoteAddr();
-        }
-        return ip.equals("0:0:0:0:0:0:0:1") ? "127.0.0.1" : ip;
     }
 }

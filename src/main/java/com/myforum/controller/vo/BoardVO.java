@@ -18,6 +18,8 @@ public class BoardVO {
         assert board != null;
         Date date = new Date();
         board.setDateCreated(date);
+        board.setThreadCount(0);
+        board.setReplyCount(0);
         return board;
     }
 

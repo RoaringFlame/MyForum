@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      th:fragment="page(url,boardId,current,total)">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="../static/scripts/bootstrap/css/bootstrap.css"
+          th:href="@{/scripts/bootstrap/css/bootstrap.css}"/>
+    <link rel="stylesheet" href="../static/scripts/bootstrap/css/bootstrap-theme.css"
+          th:href="@{/scripts/bootstrap/css/bootstrap-theme.css}"/>
+    <script src="../static/scripts/jquery-1.11.1.js" th:src="@{/scripts/jquery-1.11.1.js}"></script>
+    <script src="../static/scripts/bootstrap/js/bootstrap.js" th:src="@{/scripts/bootstrap/js/bootstrap.js}"></script>
+</head>
+<body>
+<nav>
+    <ul class="pagination">
+        <li><a href="#" th:href="@{${url}(boardId=${boardId},page=0)}">1-首页</a></li>
+        <li><a href="#" th:href="@{${url}(boardId=${boardId},page=((${current}>0)?(${current}-1):0))}">&laquo;</a></li>
+        <li class="active"><a href="#" th:href="@{${url}(boardId=${boardId},page=${current})}" th:text="(${current}+1)">1
+            <span class="sr-only" th:text="(${current}+1)"></span></a></li>
+        <li><a href="#" th:href="@{${url}(boardId=${boardId},page=((${total}-${current}>1)?(${current}+1):(${total}-1)))}">&raquo;</a></li>
+        <li><a href="#" th:href="@{${url}(boardId=${boardId},page=(${total}-1))}">尾页-
+            <div style="display: inline-block" th:text="${total}"></div>
+        </a></li>
+    </ul>
+</nav>
+</body>
+</html>
