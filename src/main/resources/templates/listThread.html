@@ -44,7 +44,7 @@
                     <div class="fl">
 
                         <div class="pages">
-                            <div th:include="pagination::page(url='/thread/page/list',boardId=${board.id},current=${page.currentPage},total=${page.totalPage})"></div>
+                            <div th:include="pagination::page(url='/thread/page/list',idValue=${board.id},current=${page.currentPage},total=${page.totalPage})"></div>
                         </div>
 
                     </div>
@@ -144,7 +144,7 @@
                 <td align="left">
 
                     <div class="pages">
-                        <div th:include="pagination::page(url='/thread/page/list',boardId=${board.id},current=${page.currentPage},total=${page.totalPage})"></div>
+                        <div th:include="pagination::page(url='/thread/page/list',idValue=${board.id},current=${page.currentPage},total=${page.totalPage})"></div>
                     </div>
 
                 </td>

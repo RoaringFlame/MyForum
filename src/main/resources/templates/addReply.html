@@ -13,8 +13,8 @@
 <script charset="utf-8" src="../static/scripts/editor/lang/zh_CN.js" th:src="@{/scripts/editor/lang/zh_CN.js}"></script>
 <script type="text/javascript">
     KindEditor.ready(function (K) {
-        window.editor = K.create('#editor_id',{
-            resizeType : 1 //编辑器只能调整高度
+        window.editor = K.create('#editor_id', {
+            resizeType: 1 //编辑器只能调整高度
         });
     });
 </script>
@@ -33,6 +33,10 @@
                         <a th:href="@{/thread/page/list(boardId=${board.id})}">
                             <div style="display: inline-block" th:text=" ${board.name}"></div>
                         </a>
+                        &raquo;回复
+                        <a th:href="@{/reply/page/list(threadId=${thread.id})}">
+                            <div style="display: inline-block" th:text=" ${thread.title}"></div>
+                        </a>
                     </b>
                 </td>
             </tr>
@@ -40,37 +44,37 @@
         <br/>
     </div>
 
+    <!-- Thread Start -->
+    <div class="t" style="margin-bottom:0px; border-bottom:0">
+        <table cellspacing="0" cellpadding="0" width="100%">
+            <tr>
+                <th class="h">
+                    <strong class="fl w"><b>回复主题:</b>
+                        <div style="display: inline-block" th:text=" ${thread.title}"></div>
+                    </strong>
+                </th>
+            </tr>
+        </table>
+    </div>
 
-    <form action="/thread" th:action="@{/thread/add}" th:object="${threadVO}" method="post">
-        <!-- Thread Start -->
-        <div class="t" style="margin-bottom:0px; border-bottom:0">
-            <table cellspacing="0" cellpadding="0" width="100%">
-                <tr>
-                    <th class="h">
-                        <strong class="fl w"><b>发表帖子</b>
-                        </strong>
-                    </th>
-                </tr>
-            </table>
-        </div>
-
+    <form action="/reply" th:action="@{/reply/add}" th:object="${replyVO}" method="post">
         <div class="t t2">
             <table cellspacing="0" cellpadding="0" width="100%"
                    style="table-layout:fixed;border-top:0">
                 <tr class="tr1">
-                    <input class="form-control" type="hidden"
-                           th:value="${board.id}" id="boardId" name="boardId"/>
+                    <input type="hidden" th:value="${thread.id}" id="threadId" name="threadId"/>
+                    <input type="hidden" th:value="'Re:'+${thread.title}" id="title" name="title"/>
                     <th style="width:20%;text-align: right" class="r_two">
-                        主题
+                        原帖主题
                     </th>
                     <th height="100%" class="r_one" valign="top" id="td_4900235"
                         style="padding:5px 15px 0 15px; border:0;width:80%; overflow:hidden">
-                        <input style="width: 500px; " type="text" th:field="*{title}"/>
+                        <div style="display: inline-block" th:text=" ${thread.title}"></div>
                     </th>
                 </tr>
                 <tr class="tr1 r_one">
-                    <th style="width:20%;text-align: right" class="r_two">
-                        内容
+                    <th style="width:20%;text-align: right" class="r_two" >
+                        回复内容
                     </th>
                     <th style="vertical-align:bottom;padding-left:15px;border:0">
                         <textarea id="editor_id" name="content" th:field="*{content}" style="width:700px;height:300px;">

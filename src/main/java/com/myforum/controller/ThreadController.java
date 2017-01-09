@@ -37,10 +37,12 @@ public class ThreadController {
     private PersonService personService;
 
     @RequestMapping(value = "/page/list", method = GET)
-    public String threadPageList(@RequestParam Long boardId,
+    public String threadPageList(@RequestParam(required = false) Long boardId,
+                                 @RequestParam(required = false) Long id,
                                  @RequestParam(required = false, defaultValue = "0") int page,
                                  @RequestParam(required = false, defaultValue = "5") int pageSize,
                                  Model model) {
+        if (id != null) boardId = id;
         BoardInfoVO boardInfoVO = BoardInfoVO.generateBy(boardService.getBoardById(boardId));
         model.addAttribute("board", boardInfoVO);
         PageVO<ThreadInfoVO> pageVO = threadService.getThreadPage(boardId, page, pageSize);
@@ -64,7 +66,7 @@ public class ThreadController {
                             RedirectAttributes attr) {
         Person nowPerson = personService.getNowPerson();
         if (nowPerson != null) {
-            threadService.addThread(threadVO,nowPerson, request);
+            threadService.addThread(threadVO, nowPerson, request);
             attr.addAttribute("boardId", threadVO.getBoardId());
             return "redirect:/thread/page/list";
         }

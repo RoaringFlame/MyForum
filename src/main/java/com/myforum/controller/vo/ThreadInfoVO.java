@@ -14,7 +14,9 @@ import java.util.List;
  */
 public class ThreadInfoVO {
     private Long id;
+    private Long boardId;
     private String title;
+    private String content;
     private PersonInfoVO author;
     private Date dateCreated;
     private int replyCount;
@@ -25,9 +27,12 @@ public class ThreadInfoVO {
     public static ThreadInfoVO generateBy(Thread thread) {
         ThreadInfoVO threadInfoVO = VoUtil.copyBasic(ThreadInfoVO.class, thread);
         assert threadInfoVO != null;
+        threadInfoVO.setReplyCount(thread.getReplyCount());
+        threadInfoVO.setHit(thread.getHit());
+        threadInfoVO.setBoardId(thread.getBoard().getId());
         threadInfoVO.setAuthor(PersonInfoVO.generateBy(thread.getAuthor()));
         Person replyPerson = thread.getAuthorLastReplied();
-        if(replyPerson!=null) {
+        if (replyPerson != null) {
             threadInfoVO.setAuthorLastReplied(PersonInfoVO.generateBy(thread.getAuthorLastReplied()));
         }
         return threadInfoVO;
@@ -49,12 +54,28 @@ public class ThreadInfoVO {
         this.id = id;
     }
 
+    public Long getBoardId() {
+        return boardId;
+    }
+
+    public void setBoardId(Long boardId) {
+        this.boardId = boardId;
+    }
+
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     public PersonInfoVO getAuthor() {

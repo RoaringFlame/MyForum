@@ -3,11 +3,9 @@ package com.myforum.service.impl;
 import com.myforum.controller.vo.ThreadInfoVO;
 import com.myforum.controller.vo.ThreadVO;
 import com.myforum.dao.domain.Board;
-import com.myforum.dao.domain.Category;
 import com.myforum.dao.domain.Person;
 import com.myforum.dao.domain.Thread;
 import com.myforum.dao.repositories.BoardRepository;
-import com.myforum.dao.repositories.CategoryRepository;
 import com.myforum.dao.repositories.ThreadRepository;
 import com.myforum.service.ThreadService;
 import com.myforum.util.PageVO;
@@ -52,5 +50,10 @@ public class ThreadServiceImpl implements ThreadService {
         pageVO.toPage(threadPage);
         pageVO.setItems(ThreadInfoVO.generateBy(threadPage.getContent()));
         return pageVO;
+    }
+
+    @Override
+    public Thread getThreadById(Long threadId) {
+        return threadRepository.findOne(threadId);
     }
 }
